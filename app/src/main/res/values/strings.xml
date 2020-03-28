@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Hack Quarantine Demo</string>
-    <string name="task_description">Task description</string>
+    <string name="add_student">Add Student</string>
     <string name="submit">Submit</string>
 </resources>

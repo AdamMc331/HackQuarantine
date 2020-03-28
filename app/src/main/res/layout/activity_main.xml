@@ -8,11 +8,11 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/task_input"
+        android:id="@+id/student_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:hint="@string/task_description"
+        android:hint="@string/add_student"
         android:importantForAutofill="no"
         android:inputType="textCapSentences"
         app:layout_constraintEnd_toStartOf="@+id/add_button"
@@ -24,19 +24,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        app:layout_constraintBottom_toBottomOf="@+id/task_input"
+        app:layout_constraintBottom_toBottomOf="@+id/student_input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/task_input"
+        app:layout_constraintStart_toEndOf="@+id/student_input"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/task_list"
+        android:id="@+id/student_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/task_input" />
+        app:layout_constraintTop_toBottomOf="@+id/student_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

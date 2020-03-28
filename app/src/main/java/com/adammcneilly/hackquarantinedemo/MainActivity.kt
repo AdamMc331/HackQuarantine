@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
-    private var tasks: MutableList<Task> = mutableListOf()
-    private val adapter = TaskAdapter()
+    private var students: MutableList<Student> = mutableListOf()
+    private val adapter = StudentAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,26 +21,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupButtonClick() {
-        val inputEditText = findViewById<EditText>(R.id.task_input)
+        val inputEditText = findViewById<EditText>(R.id.student_input)
         val addButton = findViewById<Button>(R.id.add_button)
 
         addButton.setOnClickListener {
-            val taskText = inputEditText.text.toString()
-            addTask(taskText)
+            val studentName = inputEditText.text.toString()
+            addStudent(studentName)
 
             inputEditText.setText("")
         }
     }
 
-    private fun addTask(taskText: String) {
-        val newTask = Task(description = taskText)
-        tasks.add(newTask)
+    private fun addStudent(studentName: String) {
+        val newStudent = Student(studentName = studentName)
+        students.add(newStudent)
 
-        adapter.tasks = tasks
+        adapter.students = students
     }
 
     private fun setupRecyclerView() {
-        val recyclerView = findViewById<RecyclerView>(R.id.task_list)
+        val recyclerView = findViewById<RecyclerView>(R.id.student_list)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
