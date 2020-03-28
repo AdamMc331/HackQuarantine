@@ -6,11 +6,21 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 
 class MainActivity : AppCompatActivity() {
 
-    private var students: MutableList<Student> = mutableListOf()
     private val adapter = StudentAdapter()
+
+    private val database: StudentDatabase by lazy {
+        Room.databaseBuilder(
+            this,
+            StudentDatabase::class.java,
+            "student-database.db"
+        )
+            .allowMainThreadQueries()
+            .build()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +28,9 @@ class MainActivity : AppCompatActivity() {
 
         setupRecyclerView()
         setupButtonClick()
+
+        val savedStudents = database.studentDao().fetchAllStudents()
+        adapter.students = savedStudents
     }
 
     private fun setupButtonClick() {
@@ -34,9 +47,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun addStudent(studentName: String) {
         val newStudent = Student(studentName = studentName)
-        students.add(newStudent)
+        database.studentDao().insertStudent(newStudent)
 
-        adapter.students = students
+        val savedStudents = database.studentDao().fetchAllStudents()
+        adapter.students = savedStudents
     }
 
     private fun setupRecyclerView() {
