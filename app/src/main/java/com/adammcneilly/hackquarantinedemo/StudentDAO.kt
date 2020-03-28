@@ -1,5 +1,6 @@
 package com.adammcneilly.hackquarantinedemo
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -12,7 +13,7 @@ interface StudentDAO {
     fun insertStudent(student: Student): Long
 
     @Query("SELECT * FROM students")
-    fun fetchAllStudents(): List<Student>
+    fun fetchAllStudents(): LiveData<List<Student>>
 
     @Update
     fun updateStudent(student: Student)

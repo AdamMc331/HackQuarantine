@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -29,8 +30,9 @@ class MainActivity : AppCompatActivity() {
         setupRecyclerView()
         setupButtonClick()
 
-        val savedStudents = database.studentDao().fetchAllStudents()
-        adapter.students = savedStudents
+        database.studentDao().fetchAllStudents().observe(this, Observer { students ->
+            adapter.students = students
+        })
     }
 
     private fun setupButtonClick() {
@@ -47,10 +49,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun addStudent(studentName: String) {
         val newStudent = Student(studentName = studentName)
-        database.studentDao().insertStudent(newStudent)
 
-        val savedStudents = database.studentDao().fetchAllStudents()
-        adapter.students = savedStudents
+        val insertRunnable = Runnable {
+            database.studentDao().insertStudent(newStudent)
+        }
+
+        val thread = Thread(insertRunnable)
+
+        thread.start()
     }
 
     private fun setupRecyclerView() {
