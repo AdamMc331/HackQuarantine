@@ -16,6 +16,10 @@ annotations, and insert/fetch data from the database. You can find the code from
 In the second part of the workshop, we demonstrate how to run room queries on a background thread,
 so we don't block the UI while talking to the database. You can find that code [here](https://github.com/AdamMc331/HackQuarantine/pull/2/files).
 
+## Live Demo
+
+All of the code from the live demo is on the hq_demo branch: https://github.com/AdamMc331/HackQuarantine/compare/hq_demo?expand=1
+
 ## Additional Resources
 
 * Room: https://developer.android.com/training/data-storage/room
